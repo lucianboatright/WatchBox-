@@ -1,5 +1,5 @@
 import React from 'react';
-import Watches from "./Components/Watches";
+import Watches from "./Watches";
 import './App.css';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from './firebase';

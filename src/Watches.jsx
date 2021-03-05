@@ -1,7 +1,7 @@
-import "../App.css";
+import "./App.css";
 import React, { Component }  from 'react';
 import { useState } from "react";
-import firebase, { auth, firestore, functions } from "../firebase";
+import firebase, { auth, firestore, functions } from "./firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const Watches = () => {
@@ -44,17 +44,17 @@ const Watches = () => {
 };
 
 const Watch = ({id, complete, text }) => {
-    const watchesRef = firestore.collection(`users/${auth.currentUser.uid}/watches`);
+    const watchRef = firestore.collection(`users/${auth.currentUser.uid}/watches`);
     const onCompleteWatch = (id, complete) => 
-        watchesRef.doc(id).set({ complete: !complete }, {merge: true});
+        watchRef.doc(id).set({ complete: !complete }, {merge: true});
 
-    const onDeleteWatch = (id) => watchesRef.doc(id).delete();
+    const onDeleteWatch = (id) => watchRef.doc(id).delete();
 
     return (
         <div key={id} className="watch">
             <button 
-                className={'watch-item ${complete ? "complete" : ""}'} 
-                tabIndex="8"
+                className={`watch-item ${complete ? "complete" : ""}`} 
+                tabIndex="0"
                 onClick={() => onCompleteWatch(id, complete)}
             >
                 {text}

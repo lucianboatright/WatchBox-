@@ -42,12 +42,12 @@ header {
   padding: 0 50px;
 }
 
-.todo {
+.watch {
   display: flex;
   justify-content: center;
 }
 
-.todo-item {
+.watch-item {
   text-decoration: none;
 }
 
@@ -55,7 +55,7 @@ header {
   text-decoration: line-through;
 }
 
-.todo :last-child {
+.watch :last-child {
   margin-left: 2rem;
   color: #bf616a;
 }
