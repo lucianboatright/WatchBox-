@@ -1,16 +1,25 @@
 import "../App.css";
-import { userState } from "react";
+import React, { Component }  from 'react';
+import { useState } from "react";
+import firebase, { auth, firestore, functions } from "../firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const Watches = () => {
     const [watch, setWatch] = useState("");
-    const watch = [];
+    const watchRef = firestore.collection(`user/${auth.currentUser.uid}/watches`);
+    const [watches] = useCollectionData(watchRef, { idField: "id" });
 
-    const signOut = () => {};
+    const signOut = () => auth.signOut();
 
-    const onSubmitTodo = (event) => {
-        event.preventDeafult();
+    const onSubmitWatch = (event) => {
+        event.preventDefault();
 
-        setWatch("")
+        setWatch("");
+        watchRef.add({
+            text: watch,
+            complete: false,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          });
     };
 
     return (
@@ -23,21 +32,23 @@ const Watches = () => {
                 <input
                     required
                     value={watch}
-                    omChange={(e) => setTodo(e.targer.value)}
-                    placeHolder="What's Next"
+                    onChange={(e) => setWatch(e.target.value)}
+                    placeholder="What's Next"
                 />
                 <button type="submit">Add</button>
             </form>
-            {watches && watches.map((watch) => <Watches {...watch} /> )}
+            {watches && watches.map((watch) => <Watch key={watch.id} {...watch} /> )}
         </main>
         </>
     );
 };
 
 const Watch = ({id, complete, text }) => {
-    const onCompleteWatch = (id, complete) => {};
+    const watchesRef = firestore.collection(`users/${auth.currentUser.uid}/watches`);
+    const onCompleteWatch = (id, complete) => 
+        watchesRef.doc(id).set({ complete: !complete }, {merge: true});
 
-    const onDeleteWatch = (id) => {};
+    const onDeleteWatch = (id) => watchesRef.doc(id).delete();
 
     return (
         <div key={id} className="watch">
@@ -48,7 +59,7 @@ const Watch = ({id, complete, text }) => {
             >
                 {text}
             </button>
-            <button onClick={() => onDeleteTodo(id)}>X</button>
+            <button onClick={() => onDeleteWatch(id)}>X</button>
         </div>
     );
 };
