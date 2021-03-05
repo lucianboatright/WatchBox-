@@ -1,0 +1,49 @@
+{
+  "name": "hugo_web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "bootstrap": "^4.6.0",
+    "bootstrap-4-grid": "^3.4.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-elastic-carousel": "^0.11.1",
+    "react-grid-system": "^7.1.1",
+    "react-hover": "^2.0.0",
+    "react-hover-animation": "^2.1.1",
+    "react-image-gallery": "^1.0.8",
+    "react-multi-carousel": "^2.6.1",
+    "react-responsive-carousel": "^3.2.11",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "react-transition-group": "^4.4.1",
+    "reactstrap": "^8.9.0",
+    "styled-components": "^5.2.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
